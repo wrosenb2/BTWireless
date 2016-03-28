@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           version="1.0"
+           targetNamespace="com.aroon.bluetoothwireless.schemas.unit-table"
+           xmlns="com.aroon.bluetoothwireless.schemas.unit-table"
+           elementFormDefault="unqualified"
+           xml:lang="en">
+<xs:complexType name="unit-array">
+    <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="meter">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kilogram">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="second">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="candela">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="mole">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ampere">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="kelvin">
+                <xs:complexType>
+                    <xs:attribute name="exponent" type="xs:int" default="1"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:sequence>
+</xs:complexType>
+    <xs:simpleType name="hex-uuid-16">
+        <xs:restriction base="xs:hexBinary">
+            <xs:minLength value="4"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+<xs:complexType name="unit-type">
+    <xs:sequence>
+        <xs:element name="identifier">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="attribute" type="xs:string" nillable="true"/>
+                    <xs:element name="universal" type="xs:string"/>
+                    <xs:element name="uuid" type="hex-uuid-16"/>
+                    <xs:element name="abbreviation" type="xs:normalizedString" default=""/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+        <xs:element name="unit-definition">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="numerator" type="unit-array" minOccurs="0" maxOccurs="1"/>
+                    <xs:element name="denominator" type="unit-array" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+                <xs:attribute name="factor" type="xs:double" default="1"/>
+            </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+</xs:complexType>
+<xs:complexType name="contents">
+    <xs:sequence>
+        <xs:element name="compilation-date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="definitions" minOccurs="1" maxOccurs="1">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="gatt-unit" type="unit-type" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+</xs:complexType>
+<xs:element name="unit-table" type="contents"/>
+</xs:schema>

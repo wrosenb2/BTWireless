@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<member-services xmlns="com.aroon.bluetoothwireless.schemas.member-services"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="com.aroon.bluetoothwireless.schemas.member-services ">
+    <compilation-date>2016-03-28</compilation-date>
+    <contents>
+        <service>
+            <uuid></uuid>
+            <date-allocated></date-allocated>
+            <owner>
+                <name></name>
+                <uuid></uuid>
+            </owner>
+        </service>
+    </contents>
+</member-services>

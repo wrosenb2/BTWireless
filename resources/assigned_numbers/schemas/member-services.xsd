@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           version="1.0"
+           targetNamespace="com.aroon.bluetoothwireless.schemas.member-services"
+           xmlns="com.aroon.bluetoothwireless.schemas.member-services"
+           elementFormDefault="unqualified"
+           xml:lang="en">
+    <xs:simpleType name="hex-uuid-16">
+        <xs:restriction base="xs:hexBinary">
+            <xs:minLength value="4"/>
+            <xs:maxLength value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="member-services">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="compilation-date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="contents" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="service" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" minOccurs="0" maxOccurs="1"/>
+                                        <xs:element name="uuid" minOccurs="1" maxOccurs="1" type="hex-uuid-16"/>
+                                        <xs:element name="date-allocated" minOccurs="1" maxOccurs="1" type="xs:date"/>
+                                        <xs:element name="owner" maxOccurs="1" minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                                                    <xs:element name="uuid" minOccurs="1" maxOccurs="1" type="hex-uuid-16"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

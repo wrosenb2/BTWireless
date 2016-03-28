@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           version="1.0"
+           targetNamespace="com.aroon.bluetoothwireless.schemas.company-identifiers"
+           xmlns="com.aroon.bluetoothwireless.schemas.company-identifiers"
+           elementFormDefault="unqualified"
+           xml:lang="en">
+    <xs:element name="company-identifiers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="compilation-date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="list" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="company" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                                        <xs:element name="uuid" minOccurs="1" maxOccurs="1">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:hexBinary">
+                                                    <xs:maxLength value="4"/>
+                                                    <xs:minLength value="4"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="branding" minOccurs="1" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="website" type="xs:anyURI" maxOccurs="1" minOccurs="1"/>
+                                                    <xs:element name="logos" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="image" minOccurs="1" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="address" type="xs:anyURI" minOccurs="1" maxOccurs="1"/>
+                                                                            <xs:element name="size" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="width" type="xs:positiveInteger" use="required"/>
+                                                                                    <xs:attribute name="height" type="xs:positiveInteger" use="required"/>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                        <xs:attribute name="format" use="optional">
+                                                                            <xs:simpleType>
+                                                                                <xs:restriction base="xs:normalizedString">
+                                                                                    <xs:enumeration value="png"/>
+                                                                                    <xs:enumeration value="jpg"/>
+                                                                                    <xs:enumeration value="gif"/>
+                                                                                    <xs:enumeration value="tif"/>
+                                                                                    <xs:enumeration value="svg"/>
+                                                                                    <xs:enumeration value="bmp"/>
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>           
